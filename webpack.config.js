@@ -1,29 +1,63 @@
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  module: {
-    rules: [
-           {
-            test: /\.(scss|sass)$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "sass-loader" // compiles Sass to CSS
-            }]
-        }
-      ]
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
+const pug = require('./webpack/pug');
+const devserver = require('./webpack/devserver');
+const sass = require('./webpack/sass');
+const css = require('./webpack/css');
+const extractCSS = require('./webpack/css.extract');
+const uglifyJS = require('./webpack/js.uglify');
+const images = require('./webpack/images');
+
+const PATHS = {
+    source: path.join(__dirname, 'src'),
+    build: path.join(__dirname, 'dist')
+};
+
+const common = merge([
+    {
+        entry: {
+            'index': PATHS.source + '/pages/index/index.js'
+                    },
+        output: {
+            path: PATHS.build,
+            filename: 'js/[name].js'
+        },
+        plugins: [
+            new HtmlWebpackPlugin({
+                filename: 'index.html',
+                chunks: ['index', 'common'],
+                template: PATHS.source + '/pages/index/index.pug'
+            }),
+           
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'common'
+            }),
+            new webpack.ProvidePlugin({
+                $: 'jquery',
+                jQuery: 'jquery'
+            })
+        ]
     },
- // plugins: [
-    //new ExtractTextPlugin({
-    // filename: 'style.css',
-    // publicPath: './src'
-   // })
-  //]   
+    pug(),
+    images()
+]);
+
+module.exports = function(env) {
+    if (env === 'production'){
+        return merge([
+            common,
+            extractCSS(),
+            uglifyJS()
+        ]);
+    }
+    if (env === 'development'){
+        return merge([
+            common,
+            devserver(),
+            sass(),
+            css()
+        ])
+    }
 };
