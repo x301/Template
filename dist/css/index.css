@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "merriweather-ex";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/Merriweather/Merriweather-Regular.eot");
+  src: url("/fonts/Merriweather/Merriweather-Regular.eot?#iefix") format("embedded-opentype"), url("/fonts/Merriweather/Merriweather-Regular.woff") format("woff"), url("/fonts/Merriweather/Merriweather-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "RobotoRegular";
+  font-weight: normal;
+  font-style: normal;
+  src: url("/fonts/Roboto/RobotoRegular.eot");
+  src: url("/fonts/Roboto/RobotoRegular.eot?#iefix") format("embedded-opentype"), url("/fonts/Roboto/RobotoRegular.woff") format("woff"), url("/fonts/Roboto/RobotoRegular.ttf") format("truetype"); }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+
+*::-webkit-input-placeholder {
+  color: #666;
+  opacity: 1; }
+
+*:-moz-placeholder {
+  color: #666;
+  opacity: 1; }
+
+*::-moz-placeholder {
+  color: #666;
+  opacity: 1; }
+
+*:-ms-input-placeholder {
+  color: #666;
+  opacity: 1; }
+
+*:focus {
+  outline: none; }
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+  color: #666; }
+
+body input:required:valid,
+body textarea:required:valid {
+  color: #666; }
+
+html, body {
+  height: 100%; }
+
+body {
+  font-size: 16px;
+  min-width: 320px;
+  position: relative;
+  line-height: 1.65;
+  overflow-x: hidden;
+  opacity: 1; }
+
+h1 {
+  text-decoration: none;
+  font-size: 100pt;
+  font-family: "merriweather-ex";
+  color: red; }
