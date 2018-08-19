@@ -3,8 +3,7 @@ module.exports = function() {
     module: {
       rules: [
         {
-          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-
+          test: /\.(woff|woff2|eot|ttf|otf)$/,
           loader: "file-loader",
           options: {
             name: "fonts/[name].[ext]"

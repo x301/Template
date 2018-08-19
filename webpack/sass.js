@@ -5,7 +5,7 @@ module.exports = function(paths) {
         {
           test: /\.sass$/,
           include: paths,
-          use: ["style-loader", "css-loader", "sass-loader"]
+          use: ["style-loader", "css-loader", "sass-loader?sourceMap"]
         }
       ]
     }
