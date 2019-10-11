@@ -1,1 +1,1 @@
-# Start template for Front end.
+# Start template: webpack, sass, pug, js.
